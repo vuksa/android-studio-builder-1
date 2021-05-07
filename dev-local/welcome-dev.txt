@@ -1,0 +1,34 @@
+########################################
+#
+#   Welcome!
+#
+########################################
+
+Note that all the interesting files are in
+
+  /aosp/src
+and usually you should invoke commands from that directory
+
+
+Try to setup AndroidStudio sources from scratch:
+
+ sh /aosp/builder/scripts-vcs/runrepo.sh
+
+
+Try to apply patches:
+
+ sh /aosp/builder/patches/runpatches.sh
+
+
+Try using preconfigured Android SDK:
+
+ ln -s /aosp/sdk /aosp/src/prebuilts/studio/sdk/linux
+
+
+Try building AndroidStudio dependencies:
+
+ /aosp/src/tools/base/bazel/bazel build //tools/adt/idea/android:artifacts
+
+
+Or you can do whatever you want. Enjoy your time!
+

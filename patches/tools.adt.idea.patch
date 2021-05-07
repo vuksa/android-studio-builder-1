@@ -1,0 +1,29 @@
+diff --git a/android/build.xml b/android/build.xml
+index 48a327b00c9..a98457edb5c 100644
+--- a/android/build.xml
++++ b/android/build.xml
+@@ -30,24 +30,9 @@
+     </target>
+
+     <target name="bazel-dependencies" unless="${skip.bazel.dependencies}">
+-        <exec executable="${bazel}" dir="${workspace}" failonerror="true">
+-            <arg value="build" />
+-            <arg value="//tools/adt/idea/android:artifacts" />
+-            <arg value="${bazel_config}" unless:blank="${bazel_config}"/>
+-        </exec>
+     </target>
+
+     <target name="uitest-bazel-dependencies" if="${bundle.ui.tests}">
+-        <exec executable="${bazel}" dir="${workspace}" failonerror="true">
+-            <arg value="build" />
+-            <arg value="//tools/adt/idea/android:test_deps" />
+-            <arg value="${bazel_config}" unless:blank="${bazel_config}"/>
+-        </exec>
+-        <exec executable="${bazel}" dir="${workspace}" failonerror="true">
+-            <arg value="build" />
+-            <arg value="//tools/adt/idea/uitest-framework:uitest_deps" />
+-            <arg value="${bazel_config}" unless:blank="${bazel_config}"/>
+-        </exec>
+     </target>
+
+     <condition property="build.gradle.plugin">

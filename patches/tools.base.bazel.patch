@@ -1,0 +1,46 @@
+diff --git a/bazel/common.bazel.rc b/bazel/common.bazel.rc
+index 5bba4ae79a..d419f3cba3 100644
+--- a/bazel/common.bazel.rc
++++ b/bazel/common.bazel.rc
+@@ -95,7 +95,7 @@ build --strategy=CcStrip=standalone
+ build --stripopt=--strip-unneeded
+
+ # default android native abis
+-build --fat_apk_cpu=x86,x86_64,armeabi-v7a,armeabi,arm64-v8a
++build --fat_apk_cpu=x86,x86_64,armeabi-v7a,arm64-v8a
+
+ build:remote --config=remote_common
+ build:remote --nobuild_runfile_links
+diff --git a/bazel/toplevel.WORKSPACE b/bazel/toplevel.WORKSPACE
+index e00f772c91..45f0303746 100644
+--- a/bazel/toplevel.WORKSPACE
++++ b/bazel/toplevel.WORKSPACE
+@@ -4,15 +4,6 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+ setup_external_repositories()
+
+-local_repository(
+-    name = "blaze",
+-    path = "tools/vendor/google3/blaze",
+-)
+-
+-load("@blaze//:binds.bzl", "blaze_binds")
+-
+-blaze_binds()
+-
+ local_repository(
+     name = "io_bazel_rules_kotlin",
+     path = "tools/external/bazelbuild-rules-kotlin",
+diff --git a/build-system/integration-test/integration-tests.gradle b/build-system/integration-test/integration-tests.gradle
+index a399a797eb..22586428ec 100644
+--- a/build-system/integration-test/integration-tests.gradle
++++ b/build-system/integration-test/integration-tests.gradle
+@@ -72,7 +72,7 @@ test {
+     // Always run the task, when requested.
+     outputs.upToDateWhen { false }
+
+-    maxParallelForks = Runtime.runtime.availableProcessors() / 4
++    maxParallelForks = Math.max(1, (int) (Runtime.runtime.availableProcessors() / 4))
+
+     useJUnit {
+         if (System.properties['test.includeCategories'] != null) {
