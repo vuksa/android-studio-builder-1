@@ -1,0 +1,16 @@
+Index: repository/src/main/java/com/android/repository/impl/meta/Archive.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/repository/src/main/java/com/android/repository/impl/meta/Archive.java b/repository/src/main/java/com/android/repository/impl/meta/Archive.java
+--- a/repository/src/main/java/com/android/repository/impl/meta/Archive.java	(revision 200f1300d09b94d8d8c93151d746939c9c6eb6b3)
++++ b/repository/src/main/java/com/android/repository/impl/meta/Archive.java	(date 1624831679305)
+@@ -263,6 +263,7 @@
+ 
+             if (arch.equalsIgnoreCase("x86_64") ||
+                     arch.equalsIgnoreCase("ia64") ||
++                    arch.equalsIgnoreCase("aarch64") ||
+                     arch.equalsIgnoreCase("amd64")) {
+                 jvmBits = 64;
+             } else {

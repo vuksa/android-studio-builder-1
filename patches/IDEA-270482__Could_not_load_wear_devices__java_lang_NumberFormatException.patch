@@ -1,0 +1,17 @@
+Index: sdklib/src/main/java/com/android/sdklib/devices/DeviceParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sdklib/src/main/java/com/android/sdklib/devices/DeviceParser.java b/sdklib/src/main/java/com/android/sdklib/devices/DeviceParser.java
+--- a/sdklib/src/main/java/com/android/sdklib/devices/DeviceParser.java	(revision f8bfc4a722c51720c45b27b3e3a3354295afb450)
++++ b/sdklib/src/main/java/com/android/sdklib/devices/DeviceParser.java	(date 1627902247886)
+@@ -60,7 +60,7 @@
+     public static final String CHIN_BOOT_PROP = "ro.emu.win_outset_bottom_px";
+ 
+     private static class DeviceHandler extends DefaultHandler {
+-        private static final Splitter sSpaceSplitter = Splitter.on(' ').omitEmptyStrings();
++        private static final Splitter sSpaceSplitter = Splitter.on(' ').trimResults().omitEmptyStrings();
+ 
+         private final Table<String, String, Device> mDevices = HashBasedTable.create();
+         private final StringBuilder mStringAccumulator = new StringBuilder();

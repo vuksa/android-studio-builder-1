@@ -1,23 +1,14 @@
-diff --git a/bazel/common.bazel.rc b/bazel/common.bazel.rc
-index 5bba4ae79a..d419f3cba3 100644
---- a/bazel/common.bazel.rc
-+++ b/bazel/common.bazel.rc
-@@ -95,7 +95,7 @@ build --strategy=CcStrip=standalone
- build --stripopt=--strip-unneeded
-
- # default android native abis
--build --fat_apk_cpu=x86,x86_64,armeabi-v7a,armeabi,arm64-v8a
-+build --fat_apk_cpu=x86,x86_64,armeabi-v7a,arm64-v8a
-
- build:remote --config=remote_common
- build:remote --nobuild_runfile_links
+Index: bazel/toplevel.WORKSPACE
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
 diff --git a/bazel/toplevel.WORKSPACE b/bazel/toplevel.WORKSPACE
-index e00f772c91..45f0303746 100644
---- a/bazel/toplevel.WORKSPACE
-+++ b/bazel/toplevel.WORKSPACE
-@@ -4,15 +4,6 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
- setup_external_repositories()
+--- a/bazel/toplevel.WORKSPACE	(revision f8bfc4a722c51720c45b27b3e3a3354295afb450)
++++ b/bazel/toplevel.WORKSPACE	(date 1628091149406)
+@@ -10,15 +10,6 @@
+   "@native_toolchain//:cc-toolchain-x64_windows-clang-cl",
+ )
 
 -local_repository(
 -    name = "blaze",
@@ -31,16 +22,19 @@ index e00f772c91..45f0303746 100644
  local_repository(
      name = "io_bazel_rules_kotlin",
      path = "tools/external/bazelbuild-rules-kotlin",
+Index: build-system/integration-test/integration-tests.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
 diff --git a/build-system/integration-test/integration-tests.gradle b/build-system/integration-test/integration-tests.gradle
-index a399a797eb..22586428ec 100644
---- a/build-system/integration-test/integration-tests.gradle
-+++ b/build-system/integration-test/integration-tests.gradle
-@@ -72,7 +72,7 @@ test {
-     // Always run the task, when requested.
+--- a/build-system/integration-test/integration-tests.gradle	(revision f8bfc4a722c51720c45b27b3e3a3354295afb450)
++++ b/build-system/integration-test/integration-tests.gradle	(date 1628091146990)
+@@ -81,6 +81,7 @@
      outputs.upToDateWhen { false }
 
--    maxParallelForks = Runtime.runtime.availableProcessors() / 4
-+    maxParallelForks = Math.max(1, (int) (Runtime.runtime.availableProcessors() / 4))
+     maxParallelForks = Runtime.runtime.availableProcessors() / 4
++    maxParallelForks = max(1, maxParallelForks)
 
      useJUnit {
-         if (System.properties['test.includeCategories'] != null) {
+         String includedCategories = providerFactory.systemProperty('test.includeCategories').forUseAtConfigurationTime().orNull
