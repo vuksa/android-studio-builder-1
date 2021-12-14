@@ -27,8 +27,8 @@ RUN mkdir /aosp/bin && \
 RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip > /aosp/sdk-tools-linux.zip && \
     unzip /aosp/sdk-tools-linux.zip -d /aosp/sdk && \
     yes | /aosp/sdk/tools/bin/sdkmanager --licenses && \
-    /aosp/sdk/tools/bin/sdkmanager "platform-tools" "ndk;20.0.5594570" "platforms;android-30" "build-tools;26.0.0" && \
-    ln -s /aosp/sdk/ndk/20.0.5594570 /aosp/sdk/ndk-bundle && \
+    /aosp/sdk/tools/bin/sdkmanager "platform-tools" "ndk;20.1.5948944" "platforms;android-30" "build-tools;26.0.0" && \
+    ln -s /aosp/sdk/ndk/20.1.5948944 /aosp/sdk/ndk-bundle && \
     rm /aosp/sdk-tools-linux.zip
 
 ENV AOSP_SRC_ROOT=/aosp/src
