@@ -2,7 +2,7 @@
 set -ex
 
 # <<>><<EDIT_HERE>><<>>
-TAG="studio-2020.3.1"
+TAG="studio-2021.1.1"
 
 : "${AOSP_SRC_ROOT:?Need to set AOSP root directory (e.g. 'export AOSP_SRC_ROOT=/aosp/src')}"
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"

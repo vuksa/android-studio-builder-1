@@ -1,12 +1,8 @@
-Index: .idea/modules.xml
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
 diff --git a/.idea/modules.xml b/.idea/modules.xml
---- a/.idea/modules.xml	(revision 5f41a05012bbadc4b1261813551175dd540c4a30)
-+++ b/.idea/modules.xml	(date 1628094443852)
-@@ -80,7 +80,6 @@
+index bf39431f7d0..6eb70d71514 100644
+--- a/.idea/modules.xml
++++ b/.idea/modules.xml
+@@ -104,7 +104,6 @@
        <module fileurl="file://$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" filepath="$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" filepath="$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/testing/firebase-testing/firebase-testing.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/testing/firebase-testing/firebase-testing.iml" />
@@ -14,15 +10,7 @@ diff --git a/.idea/modules.xml b/.idea/modules.xml
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" />
-@@ -144,7 +143,6 @@
-       <module fileurl="file://$PROJECT_DIR$/gradle-dsl/intellij.android.gradle.dsl.iml" filepath="$PROJECT_DIR$/gradle-dsl/intellij.android.gradle.dsl.iml" />
-       <module fileurl="file://$PROJECT_DIR$/gradle-dsl/intellij.android.gradle.dsl.tests.iml" filepath="$PROJECT_DIR$/gradle-dsl/intellij.android.gradle.dsl.tests.iml" />
-       <module fileurl="file://$PROJECT_DIR$/uitest-framework/intellij.android.guiTestFramework.iml" filepath="$PROJECT_DIR$/uitest-framework/intellij.android.guiTestFramework.iml" />
--      <module fileurl="file://$PROJECT_DIR$/android-uitests/intellij.android.guiTests.iml" filepath="$PROJECT_DIR$/android-uitests/intellij.android.guiTests.iml" />
-       <module fileurl="file://$PROJECT_DIR$/ide-perf-tests/intellij.android.ide-perf-tests.iml" filepath="$PROJECT_DIR$/ide-perf-tests/intellij.android.ide-perf-tests.iml" />
-       <module fileurl="file://$PROJECT_DIR$/inspectors-common/api/intellij.android.inspectors-common.api.iml" filepath="$PROJECT_DIR$/inspectors-common/api/intellij.android.inspectors-common.api.iml" />
-       <module fileurl="file://$PROJECT_DIR$/inspectors-common/api-ide/intellij.android.inspectors-common.api-ide.iml" filepath="$PROJECT_DIR$/inspectors-common/api-ide/intellij.android.inspectors-common.api-ide.iml" />
-@@ -208,8 +206,6 @@
+@@ -219,8 +218,6 @@
        <module fileurl="file://$PROJECT_DIR$/android-test-retention/intellij.android.testRetention.tests.iml" filepath="$PROJECT_DIR$/android-test-retention/intellij.android.testRetention.tests.iml" />
        <module fileurl="file://$PROJECT_DIR$/android-transport/intellij.android.transport.iml" filepath="$PROJECT_DIR$/android-transport/intellij.android.transport.iml" />
        <module fileurl="file://$PROJECT_DIR$/transport-database/intellij.android.transportDatabase.iml" filepath="$PROJECT_DIR$/transport-database/intellij.android.transportDatabase.iml" />
@@ -31,21 +19,22 @@ diff --git a/.idea/modules.xml b/.idea/modules.xml
        <module fileurl="file://$PROJECT_DIR$/wizard/intellij.android.wizard.iml" filepath="$PROJECT_DIR$/wizard/intellij.android.wizard.iml" />
        <module fileurl="file://$PROJECT_DIR$/wizard-model/intellij.android.wizard.model.iml" filepath="$PROJECT_DIR$/wizard-model/intellij.android.wizard.model.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../base/wizard/template-impl/intellij.android.wizardTemplate.impl.iml" filepath="$PROJECT_DIR$/../../base/wizard/template-impl/intellij.android.wizardTemplate.impl.iml" />
-@@ -232,4 +228,4 @@
-       <module fileurl="file://$PROJECT_DIR$/whats-new-assistant/whats-new-assistant-test.iml" filepath="$PROJECT_DIR$/whats-new-assistant/whats-new-assistant-test.iml" />
-     </modules>
-   </component>
--</project>
-+</project>
-\ No newline at end of file
-Index: android/build.xml
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+index 24871824420..cf14aeeebc0 100644
+--- a/.idea/vcs.xml
++++ b/.idea/vcs.xml
+@@ -19,7 +19,6 @@
+     <mapping directory="$PROJECT_DIR$/../../analytics-library" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../base" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../data-binding" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$/../../studio/google/appindexing" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../studio/google/cloud/testing" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../studio/google/cloud/tools" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../studio/google/samples" vcs="Git" />
 diff --git a/android/build.xml b/android/build.xml
---- a/android/build.xml	(revision 5f41a05012bbadc4b1261813551175dd540c4a30)
-+++ b/android/build.xml	(date 1628089951647)
+index 7817db2f4f8..98fefb9e663 100644
+--- a/android/build.xml
++++ b/android/build.xml
 @@ -30,16 +30,7 @@
      </target>
 
@@ -64,3 +53,15 @@ diff --git a/android/build.xml b/android/build.xml
      </target>
 
      <condition property="build.gradle.plugin">
+diff --git a/studio/studio.iml b/studio/studio.iml
+index 0d570c79fca..12087a6f493 100644
+--- a/studio/studio.iml
++++ b/studio/studio.iml
+@@ -15,7 +15,6 @@
+     <orderEntry type="module" module-name="google-cloud-tools-as" />
+     <orderEntry type="module" module-name="firebase" />
+     <orderEntry type="module" module-name="firebase-testing" />
+-    <orderEntry type="module" module-name="google-appindexing" />
+     <orderEntry type="module" module-name="google-cloud-tools-core-as" />
+     <orderEntry type="module" module-name="google-login-as" />
+     <orderEntry type="module" module-name="google-samples" />
