@@ -14,10 +14,16 @@ echo "sh /aosp/builder/dev-local/setuplocaluser.sh $USERID $GROUPID $USERNAME $G
 
 docker build --target builder-dev -t androidstudio-builder-dev:latest .
 
+mkdir -p "$USERHOME/.cache/bazel" || true
+mkdir -p "$USERHOME/.cache/bazelisk" || true
+mkdir -p "$USERHOME/.m2" || true
+mkdir -p "$USERHOME/.gradle" || true
+
 docker run -it --name rundevmode --rm \
     --mount type=bind,source=$AOSP_ROOT,target=/aosp/src \
     --mount type=bind,source=$MYDIR,target=/aosp/builder \
     --mount type=bind,source=$USERHOME/.cache/bazel,target=/home/${USERNAME}/.cache/bazel \
+    --mount type=bind,source=$USERHOME/.cache/bazelisk,target=/home/${USERNAME}/.cache/bazelisk \
     --mount type=bind,source=$USERHOME/.m2,target=/home/${USERNAME}/.m2 \
     --mount type=bind,source=$USERHOME/.gradle,target=/home/${USERNAME}/.gradle \
     androidstudio-builder-dev:latest

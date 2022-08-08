@@ -2,18 +2,17 @@
 set -ex
 
 # <<>><<EDIT_HERE>><<>>
-TAG="studio-2021.2.1"
+TAG="studio-2022.1.1-canary"
 
 : "${AOSP_SRC_ROOT:?Need to set AOSP root directory (e.g. 'export AOSP_SRC_ROOT=/aosp/src')}"
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"
 
-if hash $REPO_TOOL 2>/dev/null; then
-  REPO=$REPO_TOOL
-elif hash repo 2>/dev/null; then
-  REPO=repo
-fi
+rm -rf $AOSP_SRC_ROOT/.repo/repo
 
-: "${REPO:?'repo' not found in PATH, neither in REPO_TOOL (e.g. 'export REPO_TOOL=/aosp/bin/repo')}"
+REPO_TOOL=$AOSP_SRC_ROOT/repo
+curl -fsSL https://storage.googleapis.com/git-repo-downloads/repo > "$REPO_TOOL"
+chmod a+x "$REPO_TOOL"
+REPO=$REPO_TOOL
 
 cd $AOSP_SRC_ROOT
 

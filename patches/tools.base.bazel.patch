@@ -1,62 +1,33 @@
 diff --git a/bazel/toplevel.WORKSPACE b/bazel/toplevel.WORKSPACE
-index f62f1cd37e..3d9377fd86 100644
+index b67b06dbcb..7c9c909dd5 100644
 --- a/bazel/toplevel.WORKSPACE
 +++ b/bazel/toplevel.WORKSPACE
-@@ -11,15 +11,6 @@ register_toolchains(
-     "@native_toolchain//:cc-toolchain-x64_windows-clang-cl",
+@@ -22,14 +22,6 @@ new_local_repository(
+     build_file = "prebuilts/studio/jdk/BUILD.studio_jdk",
  )
  
 -local_repository(
 -    name = "blaze",
 -    path = "tools/vendor/google3/blaze",
+-    repo_mapping = {
+-     "@local_jdk": "@studio_jdk",
+-    },
 -)
 -
+ vendor_repository(
+     name = "vendor",
+     bzl = "@//tools/base/bazel:vendor.bzl",
+diff --git a/bazel/vendor.bzl b/bazel/vendor.bzl
+index 150e90d76f..12ca732b30 100644
+--- a/bazel/vendor.bzl
++++ b/bazel/vendor.bzl
+@@ -1,6 +1,4 @@
 -load("@blaze//:binds.bzl", "blaze_binds")
--
--blaze_binds()
--
- local_repository(
-     name = "io_bazel_rules_kotlin",
-     path = "tools/external/bazelbuild-rules-kotlin",
-diff --git a/build-system/integration-test/integration-tests.gradle b/build-system/integration-test/integration-tests.gradle
-index 92c509b3d0..96ccee3eac 100644
---- a/build-system/integration-test/integration-tests.gradle
-+++ b/build-system/integration-test/integration-tests.gradle
-@@ -70,34 +70,3 @@ task("createTestTempDirectory") {
-     doLast { tempFile.mkdirs() }
- }
+ load("@//tools/base/bazel:repositories.bzl", "setup_vendor_repos")
  
--test {
--    description =
--            "Runs the data binding gradle integration tests"
--    systemProperties['jar.path'] = jar.archivePath
--    systemProperties['java.io.tmpdir'] = tempFile.absolutePath
--    environment = testEnvironment
--
--    // Always run the task, when requested.
--    outputs.upToDateWhen { false }
--
--    maxParallelForks = Runtime.runtime.availableProcessors() / 4
--
--    useJUnit {
--        String includedCategories = providerFactory.systemProperty('test.includeCategories').forUseAtConfigurationTime().orNull
--        if (includedCategories != null) {
--            def categories = includedCategories.split(',')
--            String defaultPackage = "com.android.build.gradle.integration.common.category."
--            categories = categories.collect { it.charAt(0).isUpperCase() ? defaultPackage + it : it }
--            includeCategories categories as String[]
--        }
--        excludeCategories "com.android.build.gradle.integration.common.category.OnlineTests"
--    }
--
--    testLogging {
--        events = ['FAILED', 'SKIPPED', 'STANDARD_ERROR']
--        displayGranularity = 2 // Show test class and method.
--        exceptionFormat = 'full'
--        showCauses = true
--    }
--    dependsOn ':publishAndroidGradleLocal' , createTestTempDirectory
--}
+ def setup_vendor_repositories():
+     setup_vendor_repos()
+-    blaze_binds()
 diff --git a/deploy/installer/network_test.cc b/deploy/installer/network_test.cc
 index c0da42bf55..248913c186 100644
 --- a/deploy/installer/network_test.cc

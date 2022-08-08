@@ -1,29 +1,39 @@
 diff --git a/.idea/modules.xml b/.idea/modules.xml
-index bf39431f7d0..6eb70d71514 100644
+index 64604952194..2f642199e4d 100644
 --- a/.idea/modules.xml
 +++ b/.idea/modules.xml
-@@ -104,7 +104,6 @@
+@@ -113,9 +113,7 @@
+       <module fileurl="file://$PROJECT_DIR$/../../data-binding/compilerCommon/db-compilerCommon.iml" filepath="$PROJECT_DIR$/../../data-binding/compilerCommon/db-compilerCommon.iml" />
+       <module fileurl="file://$PROJECT_DIR$/../../base/dynamic-layout-inspector/common/dynamic-layout-inspector.common.iml" filepath="$PROJECT_DIR$/../../base/dynamic-layout-inspector/common/dynamic-layout-inspector.common.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" filepath="$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" />
-       <module fileurl="file://$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" filepath="$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" filepath="$PROJECT_DIR$/../../vendor/google/firebase/firebase.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/testing/firebase-testing/firebase-testing.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/testing/firebase-testing/firebase-testing.iml" />
 -      <module fileurl="file://$PROJECT_DIR$/../../studio/google/appindexing/google-appindexing.iml" filepath="$PROJECT_DIR$/../../studio/google/appindexing/google-appindexing.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" />
-@@ -219,8 +218,6 @@
-       <module fileurl="file://$PROJECT_DIR$/android-test-retention/intellij.android.testRetention.tests.iml" filepath="$PROJECT_DIR$/android-test-retention/intellij.android.testRetention.tests.iml" />
+@@ -145,7 +143,6 @@
+       <module fileurl="file://$PROJECT_DIR$/compose-ide-plugin/intellij.android.compose-ide-plugin.tests.iml" filepath="$PROJECT_DIR$/compose-ide-plugin/intellij.android.compose-ide-plugin.tests.iml" />
+       <module fileurl="file://$PROJECT_DIR$/android/intellij.android.core.iml" filepath="$PROJECT_DIR$/android/intellij.android.core.iml" />
+       <module fileurl="file://$PROJECT_DIR$/android/intellij.android.core.agp-integration-tests.iml" filepath="$PROJECT_DIR$/android/intellij.android.core.agp-integration-tests.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/android/integration/intellij.android.core.integration.iml" filepath="$PROJECT_DIR$/android/integration/intellij.android.core.integration.iml" />
+       <module fileurl="file://$PROJECT_DIR$/android/intellij.android.core.tests.iml" filepath="$PROJECT_DIR$/android/intellij.android.core.tests.iml" />
+       <module fileurl="file://$PROJECT_DIR$/dagger/intellij.android.dagger.iml" filepath="$PROJECT_DIR$/dagger/intellij.android.dagger.iml" />
+       <module fileurl="file://$PROJECT_DIR$/dagger/intellij.android.dagger.tests.iml" filepath="$PROJECT_DIR$/dagger/intellij.android.dagger.tests.iml" />
+@@ -251,8 +248,6 @@
+       <module fileurl="file://$PROJECT_DIR$/threading-checker/intellij.android.threading-checker.tests.iml" filepath="$PROJECT_DIR$/threading-checker/intellij.android.threading-checker.tests.iml" />
        <module fileurl="file://$PROJECT_DIR$/android-transport/intellij.android.transport.iml" filepath="$PROJECT_DIR$/android-transport/intellij.android.transport.iml" />
        <module fileurl="file://$PROJECT_DIR$/transport-database/intellij.android.transportDatabase.iml" filepath="$PROJECT_DIR$/transport-database/intellij.android.transportDatabase.iml" />
 -      <module fileurl="file://$PROJECT_DIR$/studio-updater/intellij.android.updater.studio-updater.iml" filepath="$PROJECT_DIR$/studio-updater/intellij.android.updater.studio-updater.iml" />
 -      <module fileurl="file://$PROJECT_DIR$/updater-ui/intellij.android.updater.ui.iml" filepath="$PROJECT_DIR$/updater-ui/intellij.android.updater.ui.iml" />
+       <module fileurl="file://$PROJECT_DIR$/wear-pairing/intellij.android.wear-pairing.iml" filepath="$PROJECT_DIR$/wear-pairing/intellij.android.wear-pairing.iml" />
+       <module fileurl="file://$PROJECT_DIR$/wear-pairing/intellij.android.wear-pairing.tests.iml" filepath="$PROJECT_DIR$/wear-pairing/intellij.android.wear-pairing.tests.iml" />
        <module fileurl="file://$PROJECT_DIR$/wizard/intellij.android.wizard.iml" filepath="$PROJECT_DIR$/wizard/intellij.android.wizard.iml" />
-       <module fileurl="file://$PROJECT_DIR$/wizard-model/intellij.android.wizard.model.iml" filepath="$PROJECT_DIR$/wizard-model/intellij.android.wizard.model.iml" />
-       <module fileurl="file://$PROJECT_DIR$/../../base/wizard/template-impl/intellij.android.wizardTemplate.impl.iml" filepath="$PROJECT_DIR$/../../base/wizard/template-impl/intellij.android.wizardTemplate.impl.iml" />
 diff --git a/.idea/vcs.xml b/.idea/vcs.xml
-index 24871824420..cf14aeeebc0 100644
+index 24871824420..fe548c6609d 100644
 --- a/.idea/vcs.xml
 +++ b/.idea/vcs.xml
-@@ -19,7 +19,6 @@
+@@ -19,12 +19,10 @@
      <mapping directory="$PROJECT_DIR$/../../analytics-library" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../base" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../data-binding" vcs="Git" />
@@ -31,13 +41,31 @@ index 24871824420..cf14aeeebc0 100644
      <mapping directory="$PROJECT_DIR$/../../studio/google/cloud/testing" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../studio/google/cloud/tools" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../studio/google/samples" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../swing-testing" vcs="Git" />
+     <mapping directory="$PROJECT_DIR$/../../vendor/google" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$/../../vendor/google3/blaze" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/android/BUILD b/android/BUILD
+index 422c18e2ee2..4a580847000 100644
+--- a/android/BUILD
++++ b/android/BUILD
+@@ -442,7 +442,6 @@ filegroup(
+         "//tools/base/utp/android-test-plugin-result-listener-gradle-proto:studio.android-test-plugin-result-listener-gradle-proto",
+         "//tools/data-binding:compilerCommon.antlr_runtime.shaded",
+         "//tools/data-binding:compilerCommon.antlr.shaded",
+-        "//tools/vendor/google/firebase/src/proto:firebase_java_proto",
+     ] + select({
+         "//tools/base/bazel:windows": [],
+         "//conditions:default": [
 diff --git a/android/build.xml b/android/build.xml
 index 7817db2f4f8..98fefb9e663 100644
 --- a/android/build.xml
 +++ b/android/build.xml
 @@ -30,16 +30,7 @@
      </target>
-
+ 
      <target name="bazel-dependencies" unless="${skip.bazel.dependencies}">
 -        <exec executable="${bazel}" dir="${workspace}" failonerror="true">
 -            <arg value="build" />
@@ -51,17 +79,37 @@ index 7817db2f4f8..98fefb9e663 100644
 -        </exec>
 +
      </target>
-
+ 
      <condition property="build.gradle.plugin">
+diff --git a/android/integration/intellij.android.core.integration.iml b/android/integration/intellij.android.core.integration.iml
+index 1dddd1c5a85..35f9c43372f 100644
+--- a/android/integration/intellij.android.core.integration.iml
++++ b/android/integration/intellij.android.core.integration.iml
+@@ -22,7 +22,6 @@
+     <orderEntry type="module" module-name="as-driver.utils" scope="TEST" />
+     <orderEntry type="module" module-name="android.sdktools.testutils" scope="TEST" />
+     <orderEntry type="module" module-name="android.sdktools.common" scope="TEST" />
+-    <orderEntry type="module" module-name="firebase" scope="TEST" />
+     <orderEntry type="library" scope="TEST" name="studio-proto" level="project" />
+     <orderEntry type="library" scope="TEST" name="firebase_java_proto" level="project" />
+     <orderEntry type="library" scope="TEST" name="truth" level="project" />
 diff --git a/studio/studio.iml b/studio/studio.iml
-index 0d570c79fca..12087a6f493 100644
+index d309d0dfd01..5af60e56906 100644
 --- a/studio/studio.iml
 +++ b/studio/studio.iml
-@@ -15,7 +15,6 @@
+@@ -13,15 +13,12 @@
+     <orderEntry type="module" module-name="intellij.android.design-plugin" />
+     <orderEntry type="module" module-name="android-ndk" />
      <orderEntry type="module" module-name="google-cloud-tools-as" />
-     <orderEntry type="module" module-name="firebase" />
+-    <orderEntry type="module" module-name="firebase" />
      <orderEntry type="module" module-name="firebase-testing" />
 -    <orderEntry type="module" module-name="google-appindexing" />
      <orderEntry type="module" module-name="google-cloud-tools-core-as" />
      <orderEntry type="module" module-name="google-login-as" />
      <orderEntry type="module" module-name="google-samples" />
+     <orderEntry type="module" module-name="intellij.android.smali" />
+     <orderEntry type="module" module-name="test-recorder" />
+-    <orderEntry type="module" module-name="url-assistant" />
+     <orderEntry type="library" name="studio-plugin-configurationScript" level="project" />
+     <orderEntry type="library" name="studio-plugin-copyright" level="project" />
+     <orderEntry type="library" name="studio-plugin-coverage" level="project" />
