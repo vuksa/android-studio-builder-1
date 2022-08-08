@@ -44,7 +44,7 @@ cd /aosp/src && /aosp/src/tools/base/bazel/bazel build //tools/adt/idea/android:
 
 ![image.png](images/kEpwT0nHhNX.png)
 
-Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
+Now go back to the host, open `$AOSP_ROOT/tools/idea` in IDEA and click `rebuild project`
 * Use `Android Studio` run configuration to run Android Studio from sources.
 
 

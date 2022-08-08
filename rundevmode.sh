@@ -7,7 +7,7 @@ GROUPNAME=`id -gn`
 GROUPID=`id -g`
 USERID=`id -u`
 USERNAME=$USER
-USERHOME=`eval echo "~$USER"`
+USERHOME=$HOME
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 echo "sh /aosp/builder/dev-local/setuplocaluser.sh $USERID $GROUPID $USERNAME $GROUPNAME" > $MYDIR/dev-local/setuplocaluserinvoker.sh

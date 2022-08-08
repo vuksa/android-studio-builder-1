@@ -38,14 +38,14 @@ cd "${SRC}/tools/adt/idea"
 git apply "${PATCHES}/tools.adt.idea.patch"
 
 ## setup intellij-sdk (this can be replaced with IC-211 + a few libraries updated)
-rm -rf "${SRC}/prebuilts/studio/intellij-sdk/AI-211/linux" || true
-mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/AI-211/linux"
+rm -rf "${SRC}/prebuilts/studio/intellij-sdk/AI-212/linux" || true
+mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/AI-212/linux"
 cd "${SRC}/prebuilts/studio/intellij-sdk"
-curl -L https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2021.1.1.22/android-studio-2021.1.1.22-linux.tar.gz > android-studio-2021.1.1.22-linux.tar.gz
-echo "a9a5eaffe1873c684b99786db482d3b11fcbc003a773634f8e740c7bca148539 android-studio-2021.1.1.22-linux.tar.gz" > android-studio-2021.1.1.22-linux.tar.gz.sha256
-sha256sum -c android-studio-2021.1.1.22-linux.tar.gz.sha256
-tar -xvf android-studio-2021.1.1.22-linux.tar.gz
-mv "android-studio" "AI-211/linux/android-studio"
+echo "e98bb08ae6b4eaa9401b555a294d98615a6ade4c85b43c630a880313eab3c7b3 android-studio-2021.2.1.14-linux.tar.gz" > android-studio-2021.2.1.14-linux.tar.gz.sha256
+if ! sha256sum -c android-studio-2021.2.1.14-linux.tar.gz.sha256; then
+    curl -L https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2021.2.1.14/android-studio-2021.2.1.14-linux.tar.gz > android-studio-2021.2.1.14-linux.tar.gz
+    sha256sum -c android-studio-2021.2.1.14-linux.tar.gz.sha256
+fi
+tar -xvf android-studio-2021.2.1.14-linux.tar.gz
+mv "android-studio" "AI-212/linux/android-studio"
 cp "${PATCHES}/prebuilts.studio.intellij-sdk.BUILD" "${SRC}/prebuilts/studio/intellij-sdk/BUILD"
-
-
