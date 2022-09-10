@@ -10,7 +10,7 @@ GNAME=$4
 echo $0
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"
 
-groupadd -g $GID $GNAME
+groupadd -f -g $GID $GNAME
 useradd -u $UID -g $GID $UNAME
 usermod --shell /bin/bash $UNAME
 cd $AOSP_SRC_ROOT
