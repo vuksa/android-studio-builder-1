@@ -27,7 +27,7 @@ RUN mkdir /aosp/bin && \
 RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip > /aosp/sdk-tools-linux.zip && \
     unzip /aosp/sdk-tools-linux.zip -d /aosp/sdk && \
     yes | /aosp/sdk/tools/bin/sdkmanager --licenses && \
-    /aosp/sdk/tools/bin/sdkmanager "platform-tools" "ndk;20.1.5948944" "platforms;android-32" "build-tools;30.0.0" && \
+    /aosp/sdk/tools/bin/sdkmanager "platform-tools" "ndk;25.1.8937393" "platforms;android-32" "build-tools;30.0.0" && \
     ln -s /aosp/sdk/ndk/20.1.5948944 /aosp/sdk/ndk-bundle && \
     rm /aosp/sdk-tools-linux.zip
 
@@ -40,4 +40,3 @@ ENV REPO_TOOL=/aosp/bin/repo
 FROM builder AS builder-dev
 
 ENTRYPOINT ["sh", "/aosp/builder/dev-local/setuplocaluserinvoker.sh"]
-
