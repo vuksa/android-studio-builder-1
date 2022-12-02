@@ -52,13 +52,16 @@ Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `reb
 
 1. Follow steps 1 & 2.
 2. Make sure the necessary NDK, Android SDK, and Build Tools are installed.
-
 ```
 sh dev-local/darwin-init.sh
 ```
 
-3. Apply the patches.
+3. Check out the repo
+```
+sh scripts-vcs/runrepo.sh
+```
 
+4. Apply the patches.
 ```
 sh patches/runpatches.sh
 ```
