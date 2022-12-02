@@ -37,6 +37,11 @@ git apply "${PATCHES}/tools.base.bazel.patch"
 cd "${SRC}/tools/adt/idea"
 git apply "${PATCHES}/tools.adt.idea.patch"
 
+# patch external/grpc for Mac laptops
+cd "${SRC}/external/grpc-grpc"
+git reset --hard
+git apply "${PATCHES}/external.grpc-grpc.patch"
+
 ## setup intellij-sdk (this can be replaced with IC-211 + a few libraries updated)
 rm -rf "${SRC}/prebuilts/studio/intellij-sdk/AI-222/linux" || true
 mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/AI-222/linux"
