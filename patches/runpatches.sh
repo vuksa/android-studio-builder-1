@@ -1,7 +1,6 @@
 set -ex
 
 : "${AOSP_SRC_ROOT:?Need to set AOSP root directory (e.g. 'export AOSP_SRC_ROOT=/aosp/src')}"
-
 if hash $REPO_TOOL 2>/dev/null; then
   REPO=$REPO_TOOL
 elif hash repo 2>/dev/null; then

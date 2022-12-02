@@ -48,6 +48,20 @@ Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `reb
 * Make sure to set the `SDK_PLATFORM` Path Variable to `linux/android-studio` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
 * Use `Android Studio` run configuration to run Android Studio from sources.
 
+# Darwin setup
+
+1. Follow steps 1 & 2.
+2. Make sure the necessary NDK, Android SDK, and Build Tools are installed.
+
+```
+sh dev-local/darwin-init.sh
+```
+
+3. Apply the patches.
+
+```
+sh patches/runpatches.sh
+```
 
 # Understanding the guide
 
