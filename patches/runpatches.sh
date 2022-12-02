@@ -31,10 +31,12 @@ curl https://android.googlesource.com/platform/art/+/master/openjdkjvmti/include
 
 # patch tools/base
 cd "${SRC}/tools/base"
+git reset --hard
 git apply "${PATCHES}/tools.base.bazel.patch"
 
 # patch tools/adt/idea
 cd "${SRC}/tools/adt/idea"
+git reset --hard
 git apply "${PATCHES}/tools.adt.idea.patch"
 
 # patch external/grpc for Mac laptops
@@ -43,17 +45,53 @@ git reset --hard
 git apply "${PATCHES}/external.grpc-grpc.patch"
 
 ## setup intellij-sdk (this can be replaced with IC-211 + a few libraries updated)
-rm -rf "${SRC}/prebuilts/studio/intellij-sdk/AI-222/linux" || true
-mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/AI-222/linux"
-cd "${SRC}/prebuilts/studio/intellij-sdk"
-ANDROID_STUDIO_VER="2022.2.1.7"
-ANDROID_STUDIO_GZ="android-studio-$ANDROID_STUDIO_VER-linux.tar.gz"
-ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/$ANDROID_STUDIO_VER/$ANDROID_STUDIO_GZ"
-echo "23b35df3646c3a2ae4a8fc7dcc0c980240110366292dc1b9bccd1ba56b825975 $ANDROID_STUDIO_GZ" > $ANDROID_STUDIO_GZ.sha256
-if ! sha256sum -c $ANDROID_STUDIO_GZ.sha256; then
-    curl -L $ANDROID_STUDIO_URL > $ANDROID_STUDIO_GZ
-    sha256sum -c $ANDROID_STUDIO_GZ.sha256
+UNAME_OUT=$(uname)
+if [ $UNAME_OUT == "Darwin" ]; then
+    OS="darwin"
+else
+    OS="linux"
 fi
-tar -xvf $ANDROID_STUDIO_GZ
-mv "android-studio" "AI-222/linux/android-studio"
+
+IDEA_VER=AI-222
+rm -rf "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS" || true
+mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS"
+
+# Keep fixed for now so we can download correctly
+TEMP_DIR="/tmp"
+ANDROID_STUDIO_VER="2022.2.1.7"
+
+if [ $UNAME_OUT == "Darwin" ]; then
+    # Assume M1 silicon for now
+    ANDROID_STUDIO_GZ="android-studio-$ANDROID_STUDIO_VER-mac_arm.zip"
+    ANDROID_STUDIO_FULL_PATH=$TEMP_DIR/$ANDROID_STUDIO_GZ
+    echo "229790eda1b5d256a799eae036a6b5b0a1aaf670d4e24005f06ed5b9766830ae $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
+else
+    ANDROID_STUDIO_GZ="android-studio-$ANDROID_STUDIO_VER-$OS.tar.gz"
+    ANDROID_STUDIO_FULL_PATH=$TEMP_DIR/$ANDROID_STUDIO_GZ
+    echo "23b35df3646c3a2ae4a8fc7dcc0c980240110366292dc1b9bccd1ba56b825975 $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
+fi
+
+ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/$ANDROID_STUDIO_VER/$ANDROID_STUDIO_GZ"
+
+if ! sha256sum -c $ANDROID_STUDIO_FULL_PATH.sha256; then
+    curl -L $ANDROID_STUDIO_URL > $ANDROID_STUDIO_FULL_PATH
+    sha256sum -c $ANDROID_STUDIO_FULL_PATH.sha256
+fi
+
+pushd $(mktemp -d)
+tar -xvf $ANDROID_STUDIO_FULL_PATH
+PREBUILTS_DIR="${SRC}/prebuilts/studio/intellij-sdk"
+
+if [ $UNAME_OUT == "Linux" ]; then
+    mv "android-studio" "$PREBUILTS_DIR/$IDEA_VER/linux/android-studio"
+else
+    mv "Android Studio Preview.app" "$PREBUILTS_DIR/$IDEA_VER/darwin/android-studio"
+fi
+
+popd
+
 cp "${PATCHES}/prebuilts.studio.intellij-sdk.BUILD" "${SRC}/prebuilts/studio/intellij-sdk/BUILD"
+
+if [ $UNAME_OUT == "Darwin" ]; then
+    perl -pi.bak -e "s/linux\/android-studio/darwin\/android-studio\/Contents/g" "${SRC}/prebuilts/studio/intellij-sdk/BUILD"
+fi
