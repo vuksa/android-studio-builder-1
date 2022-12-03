@@ -44,27 +44,68 @@ cd /aosp/src && /aosp/src/tools/base/bazel/bazel build //tools/adt/idea/android:
 
 ![image.png](images/kEpwT0nHhNX.png)
 
-Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
+4. Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
 * Make sure to set the `SDK_PLATFORM` Path Variable to `linux/android-studio` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
 * Use `Android Studio` run configuration to run Android Studio from sources.
+   * Android Studio will be launched using the distribution provided in the prebuilts/ folder.
 
-# Darwin setup
+# Step-by-step guide (for Mac)
 
-1. Follow steps 1 & 2.
-2. Make sure the necessary NDK, Android SDK, and Build Tools are installed.
+1. Clone this repository, and navigate inside the checked out directory
+2. Setup `AOSP_ROOT` environment variable. If you have AOSP sources downloaded - you can use them. Otherwise just create
+   an empty folder and make `AOSP_ROOT` pointing to it. We will download sources later.
+```
+export AOSP_ROOT=</path/to/parent/of/"tools"/dir, or empty dir>
+```
+3. Make sure the necessary NDK, Android SDK, and Build Tools are installed.
 ```
 sh dev-local/darwin-init.sh
 ```
-
-3. Check out the repo
+4. Check out the repo
 ```
 sh scripts-vcs/runrepo.sh
 ```
-
-4. Apply the patches.
+5. Apply the patches.
 ```
 sh patches/runpatches.sh
 ```
+6. Build Android Studio dependencies with Bazel
+```
+cd $AOSP_ROOT && $AOSP_ROOT/tools/base/bazel/bazel build //tools/adt/idea/android:artifacts
+```
+
+7. Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
+* Make sure to set the `SDK_PLATFORM` Path Variable to `darwin/android-studio/Contents` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
+* Use `Android Studio` run configuration to run Android Studio from sources.
+   * Android Studio will be launched using the distribution provided in the prebuilts/ folder.
+
+# Using Android Studio canary versions
+
+The distribution downloaded and installed in the `prebuilts/` folder is used to launch Android Studio. You will need to update the `patches/` and update to use these versions.
+The source code can be used to set breakpoints in the code.
+
+```
+pushd $AOSP_ROOT/tools/base/adt/idea
+git fetch aosp mirror-goog-studio-main
+# stash patches
+git stash
+```
+
+```
+git checkout remotes/aosp/mirror-goog-studio-main
+```
+
+Because canary versions can often lag being published in https://android.googlesource.com/platform/manifest, you can still attempt to find it by checking out the commit SHA via `git log` and note the SHA:
+
+```
+git checkout <sha>
+git stash apply
+```
+
+You may run into stash conflicts, which will reqiure re-editing the files and recommitting the files to the `patches/` dir.
+
+The code for the latest Android Studio code can be viewed here:
+https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main
 
 # Understanding the guide
 
