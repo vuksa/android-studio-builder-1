@@ -14,3 +14,5 @@ ln -sf $HOME/Library/Android/sdk $AOSP_SRC_ROOT
 $HOME/Library/Android/sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;20.1.5948944" "platforms;android-32" "build-tools;30.0.3"
 # Used to run patches
 export REPO_TOOL="$AOSP_SRC_ROOT/repo"
+# Need to run bazel
+export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk/20.1.5948944
