@@ -51,23 +51,23 @@ else
     OS="linux"
 fi
 
-IDEA_VER=AI-222
+IDEA_VER=AI-221
 rm -rf "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS" || true
 mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS"
 
 # Keep fixed for now so we can download correctly
 TEMP_DIR="/tmp"
-ANDROID_STUDIO_VER="2022.2.1.7"
+ANDROID_STUDIO_VER="2022.1.1.19"
 
 if [ $UNAME_OUT == "Darwin" ]; then
     # Assume M1 silicon for now
     ANDROID_STUDIO_GZ="android-studio-$ANDROID_STUDIO_VER-mac_arm.zip"
     ANDROID_STUDIO_FULL_PATH=$TEMP_DIR/$ANDROID_STUDIO_GZ
-    echo "229790eda1b5d256a799eae036a6b5b0a1aaf670d4e24005f06ed5b9766830ae $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
+    echo "01f2e05fd0159e37983a7eca9ddb0c41c2bef067230d8a241de483fc194545c0 $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
 else
     ANDROID_STUDIO_GZ="android-studio-$ANDROID_STUDIO_VER-$OS.tar.gz"
     ANDROID_STUDIO_FULL_PATH=$TEMP_DIR/$ANDROID_STUDIO_GZ
-    echo "23b35df3646c3a2ae4a8fc7dcc0c980240110366292dc1b9bccd1ba56b825975 $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
+    echo "96ec44e9ad82f3a241dbc7b3b88655e3d4f2137d784b545c3574270906a68d40 $ANDROID_STUDIO_FULL_PATH" > $ANDROID_STUDIO_FULL_PATH.sha256
 fi
 
 ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/$ANDROID_STUDIO_VER/$ANDROID_STUDIO_GZ"
@@ -84,7 +84,7 @@ PREBUILTS_DIR="${SRC}/prebuilts/studio/intellij-sdk"
 if [ $UNAME_OUT == "Linux" ]; then
     mv "android-studio" "$PREBUILTS_DIR/$IDEA_VER/linux/android-studio"
 else
-    mv "Android Studio Preview.app" "$PREBUILTS_DIR/$IDEA_VER/darwin/android-studio"
+    mv "Android Studio.app" "$PREBUILTS_DIR/$IDEA_VER/darwin/android-studio"
 fi
 
 popd
