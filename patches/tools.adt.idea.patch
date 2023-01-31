@@ -1,8 +1,8 @@
 diff --git a/.idea/modules.xml b/.idea/modules.xml
-index a951d069c4c..a804ebaca10 100644
+index 2d0891b9bd5..b5b726220ed 100644
 --- a/.idea/modules.xml
 +++ b/.idea/modules.xml
-@@ -118,10 +118,8 @@
+@@ -123,10 +123,8 @@
        <module fileurl="file://$PROJECT_DIR$/../../vendor/google/directaccess-client/directaccess-client.iml" filepath="$PROJECT_DIR$/../../vendor/google/directaccess-client/directaccess-client.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../base/dynamic-layout-inspector/common/dynamic-layout-inspector.common.iml" filepath="$PROJECT_DIR$/../../base/dynamic-layout-inspector/common/dynamic-layout-inspector.common.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" filepath="$PROJECT_DIR$/../../swing-testing/fest-swing/fest-swing.iml" />
@@ -13,18 +13,11 @@ index a951d069c4c..a804ebaca10 100644
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/android-studio-plugin/google-cloud-tools-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/core-plugin/google-cloud-tools-core-as.iml" />
        <module fileurl="file://$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" filepath="$PROJECT_DIR$/../../studio/google/cloud/tools/google-login-plugin/google-login-as.iml" />
-@@ -299,4 +297,4 @@
-       <module fileurl="file://$PROJECT_DIR$/../../base/build-analyzer/common/android.build-analyzer.common.iml" filepath="$PROJECT_DIR$/../../base/build-analyzer/common/android.build-analyzer.common.iml" />
-     </modules>
-   </component>
--</project>
-\ No newline at end of file
-+</project>
 diff --git a/.idea/vcs.xml b/.idea/vcs.xml
-index 24871824420..33c27116fff 100644
+index bcc37765625..86b2a9b0f50 100644
 --- a/.idea/vcs.xml
 +++ b/.idea/vcs.xml
-@@ -19,12 +19,10 @@
+@@ -28,12 +28,10 @@
      <mapping directory="$PROJECT_DIR$/../../analytics-library" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../base" vcs="Git" />
      <mapping directory="$PROJECT_DIR$/../../data-binding" vcs="Git" />
@@ -40,10 +33,10 @@ index 24871824420..33c27116fff 100644
 \ No newline at end of file
 +</project>
 diff --git a/android/BUILD b/android/BUILD
-index 6295b35cd1c..6cb5c3b4aa8 100644
+index 5145c1071bc..935e22dde47 100644
 --- a/android/BUILD
 +++ b/android/BUILD
-@@ -421,12 +421,10 @@ filegroup(
+@@ -435,12 +435,10 @@ filegroup(
          ":android-core-proto-test",
          ":app-inspection-artifacts",
          ":deploy-artifacts",
@@ -52,19 +45,19 @@ index 6295b35cd1c..6cb5c3b4aa8 100644
          ":profiler-artifacts",
          ":transport-artifacts",
          "//tools/adt/idea/server-flags:server-flag-test-proto",
--        "//tools/adt/idea/emulator/screen-sharing-agent:bundle",
+-        "//tools/adt/idea/streaming/screen-sharing-agent:bundle",
          "//tools/adt/idea/swingp:swing-instrumenter_deploy.jarjar.jar",
          "//tools/analytics-library/protos/src/main/proto:studio.proto",
          "//tools/base/bazel:studio-grpc",
-@@ -448,8 +446,6 @@ filegroup(
+@@ -462,8 +460,6 @@ filegroup(
          "//tools/base/utp/android-test-plugin-result-listener-gradle-proto:libstudio.android-test-plugin-result-listener-gradle-proto",
          "//tools/data-binding:compilerCommon.antlr_runtime.shaded",
          "//tools/data-binding:compilerCommon.antlr.shaded",
 -        "//tools/vendor/google/firebase/src/proto:firebase_java_proto",
 -        "//tools/vendor/google/url-assistant/src/proto:urlassistant_proto",
          "//tools/adt/idea/build-attribution/proto:build-analysis-results-proto",
+         "//tools/base/common:version",
      ] + select({
-         "//tools/base/bazel:windows": [],
 diff --git a/android/build.xml b/android/build.xml
 index 7817db2f4f8..e80dbe00e98 100644
 --- a/android/build.xml
@@ -87,18 +80,18 @@ index 7817db2f4f8..e80dbe00e98 100644
  
      <condition property="build.gradle.plugin">
 diff --git a/studio/studio.iml b/studio/studio.iml
-index 7b7155b286c..0674ae68c4f 100644
+index f07322f8cef..2d926ea07b1 100644
 --- a/studio/studio.iml
 +++ b/studio/studio.iml
-@@ -14,15 +14,12 @@
+@@ -14,7 +14,6 @@
      <orderEntry type="module" module-name="android-ndk" />
      <orderEntry type="module" module-name="google-cloud-tools-as" />
      <orderEntry type="module" module-name="firebase" />
 -    <orderEntry type="module" module-name="directaccess" />
      <orderEntry type="module" module-name="firebase-testing" />
--    <orderEntry type="module" module-name="google-appindexing" />
+     <orderEntry type="module" module-name="google-appindexing" />
      <orderEntry type="module" module-name="google-cloud-tools-core-as" />
-     <orderEntry type="module" module-name="google-login-as" />
+@@ -22,7 +21,6 @@
      <orderEntry type="module" module-name="google-samples" />
      <orderEntry type="module" module-name="intellij.android.smali" />
      <orderEntry type="module" module-name="test-recorder" />
@@ -106,9 +99,9 @@ index 7b7155b286c..0674ae68c4f 100644
      <orderEntry type="module" module-name="targetsdkversion-upgrade-assistant" />
      <orderEntry type="library" name="studio-plugin-configurationScript" level="project" />
      <orderEntry type="library" name="studio-plugin-copyright" level="project" />
-@@ -63,4 +60,4 @@
-     <orderEntry type="library" name="studio-plugin-completionMlRanking" level="project" />
-     <orderEntry type="library" name="studio-plugin-ml-models-local" level="project" />
+@@ -69,4 +67,4 @@
+     <orderEntry type="library" name="studio-plugin-vcs-svn" level="project" />
+     <orderEntry type="library" name="studio-plugin-webp" level="project" />
    </component>
 -</module>
 \ No newline at end of file
