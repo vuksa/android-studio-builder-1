@@ -9,7 +9,7 @@ else
     OS="linux"
 fi
 
-TAG="studio-2022.1.1"
+TAG="studio-2022.3.1"
 
 : "${AOSP_SRC_ROOT:?Need to set AOSP root directory (e.g. 'export AOSP_SRC_ROOT=/aosp/src')}"
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"
