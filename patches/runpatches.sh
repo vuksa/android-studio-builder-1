@@ -51,7 +51,7 @@ else
     OS="linux"
 fi
 
-IDEA_VER=AI-221
+IDEA_VER=AI-223
 rm -rf "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS" || true
 mkdir -p "${SRC}/prebuilts/studio/intellij-sdk/$IDEA_VER/$OS"
 
