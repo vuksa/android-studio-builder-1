@@ -1,8 +1,8 @@
 diff --git a/bazel/toplevel.WORKSPACE b/bazel/toplevel.WORKSPACE
-index c3f494bcb5..10b758e8f7 100644
+index af888f4949..3bd6ece471 100644
 --- a/bazel/toplevel.WORKSPACE
 +++ b/bazel/toplevel.WORKSPACE
-@@ -22,14 +22,6 @@ new_local_repository(
+@@ -23,14 +23,6 @@ new_local_repository(
      path = "prebuilts/studio/jdk",
  )
  
@@ -28,3 +28,16 @@ index 150e90d76f..12ca732b30 100644
  def setup_vendor_repositories():
      setup_vendor_repos()
 -    blaze_binds()
+diff --git a/deploy/installer/network_test.cc b/deploy/installer/network_test.cc
+index c0da42bf55..248913c186 100644
+--- a/deploy/installer/network_test.cc
++++ b/deploy/installer/network_test.cc
+@@ -37,7 +37,7 @@ void NetworkTestCommand::Run(proto::InstallerResponse* response) {
+     std::string* payload = new std::string();
+     payload->resize(data_size_bytes_);
+     int fd = open("/dev/random", O_RDONLY);
+-    read(fd, payload->data(), payload->size());
++    read(fd, (void *)payload->data(), payload->size());
+     close(fd);
+     test_response->set_allocated_data(payload);
+   }
