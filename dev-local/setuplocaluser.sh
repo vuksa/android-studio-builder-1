@@ -10,7 +10,7 @@ GNAME=$4
 echo $0
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"
 
-groupadd -g $GID $GNAME
+groupadd -f -g $GID $GNAME
 useradd -u $UID -g $GID $UNAME
 usermod --shell /bin/bash $UNAME
 cd $AOSP_SRC_ROOT
@@ -27,10 +27,10 @@ if [ -d "$AOSP_SRC_ROOT/prebuilts/studio/sdk" ]; then
     if [ -d "$DIR" ]; then
       ### Take action if $DIR exists ###
       echo "Found Android SDK at ${DIR} ..."
-      ln -s /home/$UNAME/Android/Sdk $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux
+      ln -sf /home/$UNAME/Android/Sdk $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux
     else
       echo "Using default Android SDK at $BUILD_ANDROID_SDK_HOME ..."
-      ln -s $BUILD_ANDROID_SDK_HOME $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux
+      ln -sf $BUILD_ANDROID_SDK_HOME $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux
       chown $UNAME $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux/ndk-bundle/sysroot/usr/include
     fi
   fi

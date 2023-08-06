@@ -2,28 +2,52 @@
 set -ex
 
 # <<>><<EDIT_HERE>><<>>
-TAG="studio-2022.1.1-canary"
+UNAME_OUT=$(uname)
+if [ $UNAME_OUT == "Darwin" ]; then
+    OS="darwin"
+else
+    OS="linux"
+fi
+
+TAG="studio-2022.3.1"
 
 : "${AOSP_SRC_ROOT:?Need to set AOSP root directory (e.g. 'export AOSP_SRC_ROOT=/aosp/src')}"
+BUILD_ANDROID_SDK_HOME="${BUILD_ANDROID_SDK_HOME:-$ANDROID_HOME}"
+
+: "${BUILD_ANDROID_SDK_HOME:?BUILD_ANDROID_SDK_HOME needs to be set (e.g. 'export BUILD_ANDROID_SDK_HOME=/aosp/sdk')}"
+
 CFG_ROOT_DIR="$( cd "$( dirname "$0" )/.." >/dev/null 2>&1 && pwd )"
 
 rm -rf $AOSP_SRC_ROOT/.repo/repo
 
-REPO_TOOL=$AOSP_SRC_ROOT/repo
+REPO_TOOL="$AOSP_SRC_ROOT/repo"
 curl -fsSL https://storage.googleapis.com/git-repo-downloads/repo > "$REPO_TOOL"
+
 chmod a+x "$REPO_TOOL"
+if [[ $OS == "darwin" ]]; then
+   perl -pi.bak -e "s/env python$/env python3/g" $REPO_TOOL
+fi
 REPO=$REPO_TOOL
 
 cd $AOSP_SRC_ROOT
 
 $REPO forall -vc "git checkout . ; git clean -fd; git reset --hard" || true
 
-$REPO init -u  https://android.googlesource.com/platform/manifest -b $TAG < /dev/null
+$REPO init -u https://android.googlesource.com/platform/manifest -b $TAG < /dev/null
+
 $REPO ${EXTRA_REPO_FLAGS} sync -c -j4
 
-if [ ! -e "$AOSP_SRC_ROOT/prebuilts/studio/sdk/linux" ]; then
-  ln -s $BUILD_ANDROID_SDK_HOME $AOSP_SRC_ROOT/prebuilts/studio/sdk/linux
-elif [ `stat -c "%d.%i" -L "$BUILD_ANDROID_SDK_HOME"` != `stat -c "%d.%i" -L "$AOSP_SRC_ROOT/prebuilts/studio/sdk/linux"` ]; then
-  echo "'$AOSP_SRC_ROOT/prebuilts/studio/sdk/linux' is not a symlink, and \$BUILD_ANDROID_SDK_HOME ($BUILD_ANDROID_SDK_HOME) is pointing to something different"
+PREBUILT_DIR="$AOSP_SRC_ROOT/prebuilts/studio/sdk/$OS"
+
+if [ ! -e $PREBUILT_DIR ]; then
+  ln -sf $BUILD_ANDROID_SDK_HOME $PREBUILT_DIR
+elif [ $OS == "darwin" ] && [ ! "$(stat -f "%HT" $PREBUILT_DIR)" == "Symbolic Link" ]; then
+  echo "'$PREBUILT_DIR' is not a symlink'"
   false
+elif [ $OS == "linux" ] && [ `stat -c "%d.%i" -L "$BUILD_ANDROID_SDK_HOME"` != `stat -c "%d.%i" -L "$PREBUILT_DIR"` ]; then
+  echo "'$PREBUILT_DIR' is not a symlink, and \$BUILD_ANDROID_SDK_HOME ($BUILD_ANDROID_SDK_HOME) is pointing to something different"
 fi
+
+# The manifest file should be creating a symlink after toplevel.bazelrc references was removed, so we're
+# adding it here.
+ln -sf tools/base/bazel/toplevel.bazelrc $AOSP_SRC_ROOT/.bazelrc
