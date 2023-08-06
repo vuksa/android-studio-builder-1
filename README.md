@@ -76,7 +76,9 @@ cd $AOSP_SRC_ROOT && $AOSP_SRC_ROOT/tools/base/bazel/bazel build //tools/adt/ide
 
 7. Now go back to the host, open `$AOSP_SRC_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
 
-8. Set the `SDK_PLATFORM` Path Variable to `darwin/android-studio/Contents` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
+8. Inside IntelliJ, set the `SDK_PLATFORM` Path Variable to `darwin/android-studio/Contents` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
+   <img width="1266" alt="image" src="https://github.com/rogerhu/android-studio-builder/assets/326857/d08713d4-c492-4a6f-8ea7-d9b7beef5d2b">
+
    * Use `Android Studio` run configuration to run Android Studio from sources.
    * Android Studio will be launched using the distribution provided in the prebuilts/ folder.
 
