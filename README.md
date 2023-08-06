@@ -11,7 +11,7 @@ By building this docker image you confirm that you accept Google's Android SDK a
 # Step-by-step guide (for Linux)
 
 1. Clone this repository, and navigate inside the checked out directory
-2. Setup `AOSP_ROOT` environment variable. If you have AOSP sources downloaded - you can use them. Otherwise just create 
+2. Setup `AOSP_ROOT` environment variable. If you have AOSP sources downloaded - you can use them. Otherwise just create
    an empty folder and make `AOSP_ROOT` pointing to it. We will download sources later.
 ```
 export AOSP_ROOT=</path/to/parent/of/"tools"/dir, or empty dir>
@@ -21,7 +21,7 @@ export AOSP_ROOT=</path/to/parent/of/"tools"/dir, or empty dir>
 sh ./rundevmode.sh
 ```
 1. it will build docker image
-2. it will start docker container and will make a 3-4 folders shared between the docker and the host 
+2. it will start docker container and will make a 3-4 folders shared between the docker and the host
    (e.g. `$AOSP_ROOT`, `~/.cache/bazel`, `~/.cache/.m2` and ``~/.cache/.gradle``)
 
 ![image.png](images/2bg0sp3x3L6N.png)
@@ -52,10 +52,10 @@ cd /aosp/src && /aosp/src/tools/base/bazel/bazel build //tools/adt/idea/android:
 # Step-by-step guide (for Mac)
 
 1. Clone this repository, and navigate inside the checked out directory
-2. Setup `AOSP_ROOT` environment variable. If you have AOSP sources downloaded - you can use them. Otherwise just create
-   an empty folder and make `AOSP_ROOT` pointing to it. We will download sources later.
+2. Setup `AOSP_SRC_ROOT` environment variable. If you have AOSP sources downloaded - you can use them. Otherwise just create
+   an empty folder and make `AOSP_SRC_ROOT` pointing to it. We will download sources later.
 ```
-export AOSP_ROOT=</path/to/parent/of/"tools"/dir, or empty dir>
+export AOSP_SRC_ROOT=</path/to/parent/of/"tools"/dir, or empty dir>
 ```
 3. Make sure the necessary NDK, Android SDK, and Build Tools are installed.
 ```
@@ -71,12 +71,13 @@ sh patches/runpatches.sh
 ```
 6. Build Android Studio dependencies with Bazel
 ```
-cd $AOSP_ROOT && $AOSP_ROOT/tools/base/bazel/bazel build //tools/adt/idea/android:artifacts
+cd $AOSP_SRC_ROOT && $AOSP_SRC_ROOT/tools/base/bazel/bazel build //tools/adt/idea/android:artifacts
 ```
 
-7. Now go back to the host, open `$AOSP_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
-* Make sure to set the `SDK_PLATFORM` Path Variable to `darwin/android-studio/Contents` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
-* Use `Android Studio` run configuration to run Android Studio from sources.
+7. Now go back to the host, open `$AOSP_SRC_ROOT/tools/adt/idea` in IDEA and click `rebuild project`
+
+8. Set the `SDK_PLATFORM` Path Variable to `darwin/android-studio/Contents` (https://cs.android.com/android-studio/platform/tools/adt/idea/+/mirror-goog-studio-main:studio/README.md)
+   * Use `Android Studio` run configuration to run Android Studio from sources.
    * Android Studio will be launched using the distribution provided in the prebuilts/ folder.
 
 # Using Android Studio canary versions
