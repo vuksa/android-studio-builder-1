@@ -1,16 +1,16 @@
 diff --git a/bazel/toplevel.WORKSPACE b/bazel/toplevel.WORKSPACE
-index b67b06dbcb..7c9c909dd5 100644
+index af888f4949..3bd6ece471 100644
 --- a/bazel/toplevel.WORKSPACE
 +++ b/bazel/toplevel.WORKSPACE
-@@ -22,14 +22,6 @@ new_local_repository(
-     build_file = "prebuilts/studio/jdk/BUILD.studio_jdk",
+@@ -23,14 +23,6 @@ new_local_repository(
+     path = "prebuilts/studio/jdk",
  )
  
 -local_repository(
 -    name = "blaze",
 -    path = "tools/vendor/google3/blaze",
 -    repo_mapping = {
--     "@local_jdk": "@studio_jdk",
+-        "@local_jdk": "@studio_jdk",
 -    },
 -)
 -
